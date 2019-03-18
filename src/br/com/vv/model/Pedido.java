@@ -8,6 +8,8 @@ public class Pedido extends PedidoBase {
 	private String nomeFilial;
 	private ArrayList<ItemPedido> itemPedidoList = new ArrayList<>();
 	
+	private int codigoItemNextNumber;
+	
 	public String getNomeCliente() {
 		return nomeCliente;
 	}
@@ -56,6 +58,7 @@ public class Pedido extends PedidoBase {
 	 */
 	public void adicionaItemPedido(ItemPedido ip)
 	{
+		ip.setCodigo(++codigoItemNextNumber);
 		itemPedidoList.add(ip);
 	}
 	

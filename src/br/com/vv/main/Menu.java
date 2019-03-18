@@ -8,11 +8,14 @@ import br.com.vv.model.Pedido;
 public class Menu {
 	
 	private static Scanner scanner;
+	private static PedidoDatasource pedidoDatasource;
 	
 	public static void main (String[] args)
 	{
 		
 		scanner = new Scanner(System.in);
+		
+		pedidoDatasource = new PedidoDatasource();
 		
 		mostraMenu();
 				
@@ -30,14 +33,14 @@ public class Menu {
 			mostraMenu();
 			break;
 		case 3:
-			System.out.println(PedidoDatasource.getPedidoList());
+			System.out.println(pedidoDatasource.getPedidoList());
 			System.out.println("\n\nFim da lista de pedidos\n");
 			mostraMenu();
 			break;
 			
 		case 4:
 			System.out.println("Entre com o codigo do pedido: ");
-			System.out.println(PedidoDatasource.excluiPedido(scanner.nextInt()));
+			System.out.println(pedidoDatasource.excluiPedido(scanner.nextInt()));
 			mostraMenu();
 			break;
 		
@@ -71,7 +74,7 @@ public class Menu {
 		System.out.println("Entre com o codigo do pedido: ");
 		Pedido p = new Pedido();
 		p.setCodigo(scanner.nextInt());
-		p = PedidoDatasource.consultaPedido(p);
+		p = pedidoDatasource.consultaPedido(p);
 		if(p != null)
 		{
 			p.setDataHoraEdicao();
@@ -133,7 +136,7 @@ public class Menu {
 			
 		}
 		
-		PedidoDatasource.criaPedido(p);
+		pedidoDatasource.criaPedido(p);
 		
 	}
 	
