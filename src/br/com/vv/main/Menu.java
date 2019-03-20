@@ -1,6 +1,7 @@
 package br.com.vv.main;
 import java.util.Scanner;
 
+import br.com.vv.dados.IDataSource;
 import br.com.vv.dados.PedidoDatasource;
 import br.com.vv.model.ItemPedido;
 import br.com.vv.model.Pedido;
@@ -8,7 +9,7 @@ import br.com.vv.model.Pedido;
 public class Menu {
 	
 	private static Scanner scanner;
-	private static PedidoDatasource pedidoDatasource;
+	private static IDataSource pedidoDatasource;
 	
 	public static void main (String[] args)
 	{
@@ -16,6 +17,8 @@ public class Menu {
 		scanner = new Scanner(System.in);
 		
 		pedidoDatasource = new PedidoDatasource();
+		
+		pedidoDatasource.restauraArquivo();
 		
 		mostraMenu();
 				
@@ -136,7 +139,7 @@ public class Menu {
 			
 		}
 		
-		pedidoDatasource.criaPedido(p);
+		pedidoDatasource.addPedido(p);
 		
 	}
 	

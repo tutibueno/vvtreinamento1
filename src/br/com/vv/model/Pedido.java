@@ -35,7 +35,7 @@ public class Pedido extends PedidoBase {
 		StringBuilder itens = new StringBuilder();
 		StringBuilder sbPedido = new StringBuilder();
 		
-		itens.append("\t -----------Itens do Pedido------------\n");
+		itens.append("\t -------Itens do Pedido------------\n");
 		
 		for (int i = 0; i < itemPedidoList.size(); i++) {
 			itens.append(itemPedidoList.get(i).toString());

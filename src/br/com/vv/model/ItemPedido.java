@@ -26,7 +26,7 @@ public class ItemPedido extends PedidoBase{
 	}
 	
 	/**
-	 * Calcula automaticamente o valor total de um pedido retornando o valor.
+	 * Calcula automaticamente o valor total de um pedido (quantidade * valor unitario) retornando o valor total.
 	 */
 	public double getValorTotal()
 	{
@@ -39,8 +39,8 @@ public class ItemPedido extends PedidoBase{
 		StringBuilder sb = new StringBuilder();
 		
 		sb.append("\tCodigo: ").append(codigo).append(" Produto: ").append(nome).
-		append(" Quantidade: ").append(quantidade).append(" Valor Unitario: ").
-		append(valor).append(" Valor Total: ").append(getValorTotal()).append("\n");
+			append(" Quantidade: ").append(quantidade).append(" Valor Unitario: ").
+			append(valor).append(" Valor Total: ").append(getValorTotal()).append("\n");
 		
 		return sb.toString();
 	}

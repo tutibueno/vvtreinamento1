@@ -1,12 +1,15 @@
 package br.com.vv.model;
 
+import java.io.Serializable;
 import java.sql.Date;
 import java.time.Instant;
 
-public abstract class PedidoBase {
+public abstract class PedidoBase implements Serializable{
+	
 	
 	protected int codigo;
 	protected String dataHoraInclusao;
+	
 	protected String dataHoraEdicao;
 	
 	private static int codigoNextNumber; //geracao de codigo automatico
