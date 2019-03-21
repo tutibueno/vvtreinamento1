@@ -1,8 +1,13 @@
 package br.com.vv.dados;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import br.com.vv.model.Pedido;
 
 public interface IDataSource {
+	
+	final List<Pedido> pedidoList = null;
 
 	/**
 	 * Retorna uma lista de pedidos no formato texto. Utiliza o toString() da classe
@@ -34,8 +39,15 @@ public interface IDataSource {
 	 *            do pedido a ser excluido
 	 * @return retorna se a exclusao foi bem sucedida em String
 	 */
-	String excluiPedido(int codigo);
-
-	void restauraArquivo();
+	String excluiPedido(Pedido p);
+	
+	/**
+	 * Edita um pedido da lista de pedidos em memoria.
+	 * 
+	 * @param codigo
+	 *            do pedido a ser editado
+	 * 
+	 */
+	void editaPedido(Pedido p);
 
 }

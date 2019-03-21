@@ -1,27 +1,39 @@
 package br.com.vv.main;
 import java.util.Scanner;
 
-import br.com.vv.dados.IDataSource;
-import br.com.vv.dados.PedidoDatasource;
+import br.com.vv.dados.*;
 import br.com.vv.model.ItemPedido;
 import br.com.vv.model.Pedido;
 
 public class Menu {
 	
 	private static Scanner scanner;
-	private static IDataSource pedidoDatasource;
+	private static PedidoDatasource pedidoDatasource;
 	
 	public static void main (String[] args)
 	{
-		
 		scanner = new Scanner(System.in);
+		decideFormaGravacao();
+	}
+	
+	private static void decideFormaGravacao()
+	{
+		System.out.println("Deseja armazenar os pedido em arquivo ou memoria (A/M) ?");
+		String s = scanner.next();
+		s = s.toUpperCase();
 		
-		pedidoDatasource = new PedidoDatasource();
-		
-		pedidoDatasource.restauraArquivo();
+		if(s.equals("M"))
+			pedidoDatasource = new PedidoDatasource(new MemoriaDataSource());
+		else if (s.equals("A"))
+			pedidoDatasource = new PedidoDatasource(new ArquivoDataSource());
+		else
+		{
+			System.out.println("Opcao invalida! \n");
+			decideFormaGravacao();
+			return;
+		}
 		
 		mostraMenu();
-				
 	}
 	
 	private static void processaMenu(int opcao)
@@ -43,15 +55,27 @@ public class Menu {
 			
 		case 4:
 			System.out.println("Entre com o codigo do pedido: ");
-			System.out.println(pedidoDatasource.excluiPedido(scanner.nextInt()));
+			Pedido p = new Pedido();
+			p.setCodigo(scanner.nextInt());
+			System.out.println(pedidoDatasource.excluiPedido(p));
 			mostraMenu();
 			break;
 		
 		case 5:
-			System.out.println("Programa terminado\n");
-			System.exit(0);
-			break;
-
+			System.out.println("Deseja sair do progama? (S/N) \n");
+			String s = scanner.next();
+			s = s.toUpperCase();
+			if(s.equals("S"))
+			{
+				System.out.println("Programa terminado\n");
+				System.exit(0);
+			}
+			else if (s.equals("N"))
+			{
+				mostraMenu();
+				break;
+			}
+			
 		default:
 			System.out.println("Opcao invalida.\n\n");
 			mostraMenu();
@@ -99,10 +123,12 @@ public class Menu {
 				ip.setQuantidade(scanner.nextInt());
 				
 			}
+			
+			pedidoDatasource.editaPedido(p);
 		}
 		else
 		{
-			System.out.println("Erro: Pedido " + p.getCodigo() + " nao encontrado.\n\n");
+			System.err.println("Erro: Pedido nao encontrado.\n\n");
 		}
 	}
 	
