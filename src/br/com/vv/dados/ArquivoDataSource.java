@@ -71,17 +71,22 @@ public class ArquivoDataSource implements IDataSource {
 	private void restauraArquivo() {
 
 		try {
-			File file = FileUtils.getFile("/pedido.ser");
+			File file = FileUtils.getFile("/pedido.dat");
+			if(!file.exists()) {
+				file.createNewFile();
+				System.err.println("Arquivo de dados criado: /pedido.dat");
+				return;
+			}
 			FileInputStream fileIn = FileUtils.openInputStream(file);
 			ObjectInputStream in = new ObjectInputStream(fileIn);
 			pedidoList = (ArrayList) in.readObject();
 			in.close();
 			fileIn.close();
 		} catch (IOException i) {
-			i.printStackTrace();
+			//i.printStackTrace();
+			System.err.println("Ocorreu um erro ao ler o arquivo de pedidos");
 			return;
 		} catch (ClassNotFoundException c) {
-			System.out.println("Ocorreu um erro ao ler o arquivo de pedidos");
 			c.printStackTrace();
 			return;
 		}
@@ -91,13 +96,13 @@ public class ArquivoDataSource implements IDataSource {
 	private void gravaArquivo() {
 		// Adiciona no arquivo
 		try {
-			File file = FileUtils.getFile("/pedido.ser");
+			File file = FileUtils.getFile("/pedido.dat");
 			FileOutputStream fileOut = FileUtils.openOutputStream(file);
 			ObjectOutputStream out = new ObjectOutputStream(fileOut);
 			out.writeObject(pedidoList);
 			out.close();
 			fileOut.close();
-			System.out.printf("Salvo no arquivo /pedido.ser \n");
+			System.out.printf("Salvo no arquivo /pedido.dat \n");
 
 		} catch (IOException i) {
 			System.err.print("Ocorreu um erro ao salvar o arquivo de pedidos");

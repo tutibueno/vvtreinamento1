@@ -2,6 +2,10 @@ package br.com.vv.model;
 
 public class ItemPedido extends PedidoBase{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6767788101539782799L;
 	private double valor;
 	private int quantidade;
 	private String nome;
@@ -44,5 +48,6 @@ public class ItemPedido extends PedidoBase{
 		
 		return sb.toString();
 	}
+	
 	
 }

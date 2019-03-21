@@ -4,6 +4,11 @@ import java.util.ArrayList;
 
 public class Pedido extends PedidoBase {
 	
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -422617102044170079L;
 	private String nomeCliente;
 	private String nomeFilial;
 	private ArrayList<ItemPedido> itemPedidoList = new ArrayList<>();

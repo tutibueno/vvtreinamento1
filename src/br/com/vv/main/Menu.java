@@ -86,7 +86,7 @@ public class Menu {
 	private static void mostraMenu()
 	{
 		System.out.println("======Menu Principal=======");
-		System.out.println("===1 - Incluir Pedido======");
+		System.out.println("====1 - Incluir Pedido=====");
 		System.out.println("====2 - Editar Pedido======");
 		System.out.println("====3 - Listar Pedidos=====");
 		System.out.println("====4 - Excluir Pedido=====");
@@ -182,6 +182,5 @@ public class Menu {
 		
 		return ip;
 	}
-	
 
 }
