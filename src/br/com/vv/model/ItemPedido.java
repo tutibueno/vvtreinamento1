@@ -1,6 +1,8 @@
 package br.com.vv.model;
 
-public class ItemPedido extends PedidoBase{
+import java.io.Serializable;
+
+public class ItemPedido extends PedidoBase implements Serializable{
 	
 	/**
 	 * 

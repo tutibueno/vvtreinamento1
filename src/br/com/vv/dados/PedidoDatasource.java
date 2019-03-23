@@ -1,5 +1,7 @@
 package br.com.vv.dados;
 
+import java.util.ArrayList;
+
 import br.com.vv.model.Pedido;
 
 public class PedidoDatasource implements IDataSource {
@@ -9,9 +11,9 @@ public class PedidoDatasource implements IDataSource {
 	public PedidoDatasource(IDataSource iDataSource){
 		this.iDataSource = iDataSource;
 	}
-
+	
 	@Override
-	public String getPedidoList() {
+	public ArrayList<Pedido> getPedidoList() {
 		return iDataSource.getPedidoList();
 	}
 
@@ -26,7 +28,7 @@ public class PedidoDatasource implements IDataSource {
 	}
 
 	@Override
-	public String excluiPedido(Pedido p) {
+	public boolean excluiPedido(Pedido p) {
 		return iDataSource.excluiPedido(p);
 	}
 

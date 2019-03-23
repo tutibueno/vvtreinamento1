@@ -1,8 +1,9 @@
 package br.com.vv.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Pedido extends PedidoBase {
+public class Pedido extends PedidoBase implements Serializable{
 	
 	
 	/**

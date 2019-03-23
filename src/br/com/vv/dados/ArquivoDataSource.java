@@ -15,25 +15,10 @@ import br.com.vv.model.Pedido;
 
 public class ArquivoDataSource implements IDataSource {
 
-	private List<Pedido> pedidoList = new ArrayList<>();
+	private ArrayList<Pedido> pedidoList = new ArrayList<>();
 
 	public ArquivoDataSource() {
 		restauraArquivo();
-	}
-
-	@Override
-	public String getPedidoList() {
-		String result = "";
-
-		if (pedidoList.size() <= 0)
-			return "\n\nNenhum pedido cadastrado.";
-
-		for (int i = 0; i < pedidoList.size(); i++) {
-			result += pedidoList.get(i).toString();
-			result += "\n";
-		}
-
-		return result;
 	}
 
 	@Override
@@ -57,24 +42,22 @@ public class ArquivoDataSource implements IDataSource {
 	}
 
 	@Override
-	public String excluiPedido(Pedido p) {
-
-		if (pedidoList.remove(p)) {
+	public boolean excluiPedido(Pedido p) {
+		if(pedidoList.remove(p))
+		{
 			gravaArquivo();
-			return "Pedido " + p.getCodigo() + " excluido com sucesso.";
+			return true;
 		}
-
-		return "Erro: Pedido " + p.getCodigo() + " nao encontrado!\n\n";
-
+		return false;
 	}
 	
 	private void restauraArquivo() {
 
 		try {
-			File file = FileUtils.getFile("/pedido.dat");
+			File file = FileUtils.getFile("pedido2.dat");
 			if(!file.exists()) {
 				file.createNewFile();
-				System.err.println("Arquivo de dados criado: /pedido.dat");
+				System.err.println("Arquivo de dados criado: pedido.dat");
 				return;
 			}
 			FileInputStream fileIn = FileUtils.openInputStream(file);
@@ -96,13 +79,13 @@ public class ArquivoDataSource implements IDataSource {
 	private void gravaArquivo() {
 		// Adiciona no arquivo
 		try {
-			File file = FileUtils.getFile("/pedido.dat");
+			File file = FileUtils.getFile("pedido2.dat");
 			FileOutputStream fileOut = FileUtils.openOutputStream(file);
 			ObjectOutputStream out = new ObjectOutputStream(fileOut);
 			out.writeObject(pedidoList);
 			out.close();
 			fileOut.close();
-			System.out.printf("Salvo no arquivo /pedido.dat \n");
+			System.out.printf("Salvo no arquivo pedido.dat \n");
 
 		} catch (IOException i) {
 			System.err.print("Ocorreu um erro ao salvar o arquivo de pedidos");
@@ -121,6 +104,11 @@ public class ArquivoDataSource implements IDataSource {
 		
 		gravaArquivo();
 		
+	}
+
+	@Override
+	public ArrayList<Pedido> getPedidoList() {
+		return pedidoList;
 	}
 
 }

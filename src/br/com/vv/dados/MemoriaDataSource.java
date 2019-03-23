@@ -8,21 +8,7 @@ public class MemoriaDataSource implements IDataSource{
 	
 	private ArrayList<Pedido> pedidoList = new ArrayList<>();
 
-	@Override
-	public String getPedidoList() {
-		String result = "";
-
-		if (pedidoList.size() <= 0)
-			return "\n\nNenhum pedido cadastrado.";
-
-		for (int i = 0; i < pedidoList.size(); i++) {
-			result += pedidoList.get(i).toString();
-			result += "\n";
-		}
-
-		return result;
-	}
-
+	
 	@Override
 	public void addPedido(Pedido pedido) {
 		pedidoList.add(pedido);
@@ -35,10 +21,8 @@ public class MemoriaDataSource implements IDataSource{
 	}
 
 	@Override
-	public String excluiPedido(Pedido p) {
-		if(pedidoList.remove(p))
-			return "Pedido " + p.getCodigo() + " excluido com sucesso.";
-		return "Erro: Pedido " + p.getCodigo() + " nao encontrado!\n\n";
+	public boolean excluiPedido(Pedido p) {
+		return pedidoList.remove(p);
 	}
 	
 	@Override
@@ -49,6 +33,12 @@ public class MemoriaDataSource implements IDataSource{
 		Pedido o = pedidoList.get(i);
 		
 		o = p;	
+	}
+
+	@Override
+	public ArrayList<Pedido> getPedidoList() {
+		// TODO Auto-generated method stub
+		return pedidoList;
 	}
 	
 	

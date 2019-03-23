@@ -7,13 +7,11 @@ import br.com.vv.model.Pedido;
 
 public interface IDataSource {
 	
-	final List<Pedido> pedidoList = null;
-
 	/**
 	 * Retorna uma lista de pedidos no formato texto. Utiliza o toString() da classe
 	 * Pedido.
 	 */
-	String getPedidoList();
+	ArrayList<Pedido> getPedidoList();
 
 	/**
 	 * Adiciona o pedido na lista de pedidos em mem�ria.
@@ -39,7 +37,7 @@ public interface IDataSource {
 	 *            do pedido a ser excluido
 	 * @return retorna se a exclusao foi bem sucedida em String
 	 */
-	String excluiPedido(Pedido p);
+	boolean excluiPedido(Pedido p);
 	
 	/**
 	 * Edita um pedido da lista de pedidos em memoria.

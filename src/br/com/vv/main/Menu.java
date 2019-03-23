@@ -21,11 +21,11 @@ public class Menu {
 		System.out.println("Deseja armazenar os pedido em arquivo ou memoria (A/M) ?");
 		String s = scanner.next();
 		s = s.toUpperCase();
-		
+		ArquivoDataSource a = new ArquivoDataSource();
 		if(s.equals("M"))
 			pedidoDatasource = new PedidoDatasource(new MemoriaDataSource());
 		else if (s.equals("A"))
-			pedidoDatasource = new PedidoDatasource(new ArquivoDataSource());
+			pedidoDatasource = new PedidoDatasource(a);
 		else
 		{
 			System.out.println("Opcao invalida! \n");
@@ -48,16 +48,14 @@ public class Menu {
 			mostraMenu();
 			break;
 		case 3:
+			listaPedido();
 			System.out.println(pedidoDatasource.getPedidoList());
 			System.out.println("\n\nFim da lista de pedidos\n");
 			mostraMenu();
 			break;
 			
 		case 4:
-			System.out.println("Entre com o codigo do pedido: ");
-			Pedido p = new Pedido();
-			p.setCodigo(scanner.nextInt());
-			System.out.println(pedidoDatasource.excluiPedido(p));
+			excluiPedido();
 			mostraMenu();
 			break;
 		
@@ -182,5 +180,33 @@ public class Menu {
 		
 		return ip;
 	}
+	
+	private static void excluiPedido()
+	{
+		System.out.println("Entre com o codigo do pedido: ");
+		Pedido p = new Pedido();
+		p.setCodigo(scanner.nextInt());
+		StringBuilder sb = new StringBuilder();
+		sb.append("Pedido ").append(p.getCodigo());
+		System.out.println(pedidoDatasource.excluiPedido(p) ? sb.append(" excluído com sucesso.") : sb.append(" não econtrado."));
+		sb.append("\n");
+		sb.toString();
+	}
+	
+	private static void listaPedido()
+	{
+		StringBuilder result = new StringBuilder();
 
+		if (pedidoDatasource.getPedidoList().size() <= 0) {
+			result.append("\n\nNenhum pedido cadastrado.");
+		}
+		
+		for (Pedido pedido : pedidoDatasource.getPedidoList())
+		{
+			result.append(pedido.toString()+"\n");
+		} 
+		
+		result.toString();
+		
+	}
 }
