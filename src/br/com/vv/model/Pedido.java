@@ -60,12 +60,12 @@ public class Pedido extends PedidoBase implements Serializable{
 	
 	/**
 	 * Adiciona um item de pedido na lista de item de pedidos dentro de um pedido.
-	 * @param ItemPedido a ser adicionado
+	 * @param itemPedido ItemPedido a ser adicionado
 	 */
-	public void adicionaItemPedido(ItemPedido ip)
+	public void adicionaItemPedido(ItemPedido itemPedido)
 	{
-		ip.setCodigo(++codigoItemNextNumber);
-		itemPedidoList.add(ip);
+		itemPedido.setCodigo(++codigoItemNextNumber);
+		itemPedidoList.add(itemPedido);
 	}
 	
 	/**

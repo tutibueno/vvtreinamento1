@@ -14,7 +14,7 @@ public interface IDataSource {
 	ArrayList<Pedido> getPedidoList();
 
 	/**
-	 * Adiciona o pedido na lista de pedidos em mem�ria.
+	 * Adiciona o pedido na lista de pedidos em memoria.
 	 * 
 	 * @param pedido
 	 *            - Pedido a ser adicionado
@@ -33,17 +33,16 @@ public interface IDataSource {
 	/**
 	 * Exclui um pedido da lista de pedidos em memoria.
 	 * 
-	 * @param codigo
-	 *            do pedido a ser excluido
-	 * @return retorna se a exclusao foi bem sucedida em String
+	 * @param p Pedido a ser excluido
+	 *            
+	 * @return retorna se a exclusao foi bem sucedida em String (boolean)
 	 */
 	boolean excluiPedido(Pedido p);
 	
 	/**
 	 * Edita um pedido da lista de pedidos em memoria.
 	 * 
-	 * @param codigo
-	 *            do pedido a ser editado
+	 * @param p Pedido a ser editado
 	 * 
 	 */
 	void editaPedido(Pedido p);
