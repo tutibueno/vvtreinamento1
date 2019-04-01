@@ -1,7 +1,6 @@
 package br.com.vv.dados;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import br.com.vv.model.Pedido;
 

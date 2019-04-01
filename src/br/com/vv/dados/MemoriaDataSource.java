@@ -37,7 +37,6 @@ public class MemoriaDataSource implements IDataSource{
 
 	@Override
 	public ArrayList<Pedido> getPedidoList() {
-		// TODO Auto-generated method stub
 		return pedidoList;
 	}
 	

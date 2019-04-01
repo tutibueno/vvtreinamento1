@@ -7,6 +7,10 @@ import java.time.Instant;
 public abstract class PedidoBase implements Serializable{
 	
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	protected int codigo;
 	protected String dataHoraInclusao;
 	
